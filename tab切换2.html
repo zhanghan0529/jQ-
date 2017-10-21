@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .container{
+            margin: 20px;
+        }
+        .tabs{
+            width: 810px;
+            border:1px solid #bbb;
+            text-align: center;
+        }
+        .tabs>li{
+            width: 269px;
+            float: left;
+            border-right:1px solid #bbb;
+            cursor: pointer;
+        }
+        .active{
+            background: #eee;
+        }
+        .tabs>li:last-child{
+            border-right: none;
+        }
+        .clearfix::after{
+            display:block;
+            content: '';
+            clear: both;
+        }
+        .wrap{
+            width: 810px;
+            overflow: hidden;
+            position: relative;
+            border:1px solid #bbb;
+            border-top:none;
+        }
+        .conts{
+            width: 2430px;
+            height: 400px;
+            position: relative;
+            left: 0px;
+        }
+        .conts>li{
+            width: 810px;
+            height: 400px;
+            float: left;
+        }
+        .conts>li:nth-child(1){
+            background: white;
+        }
+        .conts>li:nth-child(2){
+            background: green;
+        }
+        .conts>li:nth-child(3){
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="tabs clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="wrap">
+            <ul class="conts clearfix">
+                <li>tab1</li>
+                <li>tab2</li>
+                <li>tab3</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(".tabs>li").on("click",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            var idx = $(this).index();
+            $(this).parents().parents().find(".wrap>.conts").animate({left:-idx*810},2000);     
+        })
+    </script>
+</body>
+</html>
